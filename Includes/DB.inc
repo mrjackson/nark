@@ -1,7 +1,7 @@
  <?php
 	class DBCon
 	{
-		private $connection, $dbcon = 'sqlite:<ABSOLUTE PATH HERE>auth.sqlite', $result;
+		private $connection, $dbcon = 'sqlite:/home/mrjackson/data/auth.sqlite', $result;
 
 		function __construct()
 		{
