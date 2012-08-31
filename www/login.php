@@ -37,7 +37,7 @@
 			}
 			else
 			{
-				echo "<p>Welcome, <span style=\"font-weight: bold;\">" . $_SESSION['username'] . "</span>!</p>";
+				echo "<p>Welcome, <span style=\"font-weight: bold;\">" . $_SESSION['Username'] . "</span>!</p>";
 			}
 		?>
 	</body>
