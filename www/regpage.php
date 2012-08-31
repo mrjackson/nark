@@ -1,10 +1,10 @@
 <?php
 	require_once('../Includes/Header.inc');
-	if ($_SESSION['logged_in'])
+	if ($_SESSION['LoggedIn'])
 	{
 		Admin::Status('update');
 	}
-	elseif(!$_SESSION['logged_in'])
+	elseif(!$_SESSION['LoggedIn'])
 	{
 		header('Location: login.php');
 	}
@@ -15,7 +15,7 @@
 	</head>
 	<body>
 		<?php
-			if ($_SESSION['logged_in'])
+			if ($_SESSION['LoggedIn'])
 			{
 		?>		<div class="item">
 					<span class="label">Admin Logout</span>
