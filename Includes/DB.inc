@@ -1,7 +1,7 @@
  <?php
 	class DBCon
 	{
-		private $connection, $dbcon = 'sqlite:auth.sqlite', $result;
+		private $connection, $dbcon = 'sqlite:../Data/auth.sqlite', $result;
 
 		function __construct()
 		{
