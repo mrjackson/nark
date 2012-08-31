@@ -19,7 +19,7 @@
 	</head>
 	<body>
 		<?php
-			if (!$_SESSION['logged_in'])
+			if (!$_SESSION['LoggedIn'])
 			{
 		?>		<p>Please login to administer the site.</p>
 				<form action="#" method="POST">
@@ -30,7 +30,7 @@
 					</table>
 				</form>
 		<?php
-				if (isset($_SESSION['login_error']) && !$_SESSION['logged_in'] && $_SESSION['login_error'])
+				if (isset($_SESSION['LoginError']) && !$_SESSION['LoggedIn'] && $_SESSION['LoginError'])
 				{
 					echo "<br /><span style=\"color: #ff0000; font-weight: bold;\">The username and/or password entered was incorrect.</span>";
 				}
