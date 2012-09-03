@@ -27,7 +27,7 @@ print "<pre>Module E7 state is $output</pre>";
        $('#ajax').load('module.php?d=E7&a=off&n=test_Appliance&c=15');
       },
       {
-        switch_on_container_path: 'iphone_switch_container_off.png'
+        switch_on_container_path: 'img/iphone_switch_container_off.png'
       });
   </script>
 </div>
