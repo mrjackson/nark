@@ -1,3 +1,9 @@
+<!--Start Header--!>
+<?php
+        require_once('header.php');
+?>
+<!--End Header--!>
+
 <?php
 
 	if (isset($_POST) && !empty($_POST))
