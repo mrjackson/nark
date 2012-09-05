@@ -14,10 +14,11 @@
 <head>
 <title>nark</title>
 
-<link href="../style.css" rel="stylesheet" type="text/css" />
   <script src="jquery/jquery.js" type="text/javascript"></script>
   <script src="jquery/jquery.iphone-switch.js" type="text/javascript"></script>
-
+  <script src="jquery/jquery.ui.core.js" type="text/javascript"></script>
+  <script src="jquery/jquery.ui.mouse.js" type="text/javascript"></script>
+  <script src="jquery/jquery.ui.widget.js" type="text/javascript"></script>
 
 <style type="text/css">
 ul
@@ -65,7 +66,19 @@ font-weight:700;
 
 .clear{clear:both;}
 
+#slider { margin: 10px; } 
+
 </style>
+
+  <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+  <script>
+  $(document).ready(function() {
+    $("#slider").slider();
+  });
+  </script>
+
+
 </head>
 <body>
 
