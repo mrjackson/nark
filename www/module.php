@@ -8,10 +8,10 @@ $change = "";
 $device = $_GET["d"];
 $action = $_GET["a"];
 $name = $_GET["n"];
-if (($action == "bright") || ($action == "dim"))
-   {
-     $change = $_GET["c"];
-   }
+//if (($action == "bright") || ($action == "dim"))
+//   {
+//     $change = $_GET["c"];
+//   }
 if ($action == "level")
    {
      $exist = $_GET["e"];
