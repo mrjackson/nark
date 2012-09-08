@@ -3,10 +3,10 @@
 	$device = $_GET['d'];
 	$name = $_GET['n'];
 
-	if (($action == 'bright') || ($action == 'dim'))
-	{
-		$change = $_GET['c'];
-	}
+//	if (($action == 'bright') || ($action == 'dim'))
+//	{
+//		$change = $_GET['c'];
+//	}
 
 	if ($action == 'level')
 	{
