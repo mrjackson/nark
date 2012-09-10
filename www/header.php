@@ -1,6 +1,6 @@
 <?php
 	require_once('../Includes/Header.inc');
-	require_once('..Includes/Modules.inc');
+	require_once('../Includes/Modules.inc');
 
 	if ($_SESSION['LoggedIn'])
 	{
