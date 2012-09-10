@@ -27,24 +27,28 @@
 			$dimchange = $exist - $change;
 			$dimchangeinc = round($dimchange / 6);
 			$return = heyu("dim", $device, $name, $dimchangeinc);
+			
 			echo $return;
-			if ($return > $change)
+			
+			while (true)
 			{
-				$i = $return;
-				while ($i > $change) {
-					heyu("dim", $device, $name, "1");
-					$i--;
+				if ($return > $change)
+				{
+					$option = "dim";
+					$return--;
 				}
-			break;
-			} elseif ($return < $change)
-			{
-				$i = $return;
-				while ($i < $change) {
-					heyu("bright", $device, $name, "1");
-					$i++;
+				elseif($return < $change)
+				{
+					$option = "bright";
+					$return++;
 				}
+				else
+				{
+					break;
+				}
+				
+				heyu($option, $device, $name, "1");
 			}
-
 		}
 	}
 
