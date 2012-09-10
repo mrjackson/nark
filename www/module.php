@@ -1,74 +1,69 @@
 <?php
-	$action = $_GET['a'];
-	$device = $_GET['d'];
-	$name = $_GET['n'];
-
-	$change = "";
-	$exist = "";
-
-//	if (($action == 'bright') || ($action == 'dim'))
-//	{
-//		$change = $_GET['c'];
-//	}
-
-	if (($action == 'on') || ($action == 'off'))
+	class Module()
 	{
-		heyu($action, $device, $name);
-	}
-
-	if ($action == 'level')
-	{
-		$exist = $_GET['e'];
-		$change = $_GET['c'];
-		$action = 'dim';
-
-		if ($exist > $change)
+		public function __construct($DeviceName)
 		{
-			$dimchange = $exist - $change;
-			$dimchangeinc = round($dimchange / 6);
-			$return = heyu("dim", $device, $name, $dimchangeinc);
+			private heyu = '/usr/bin/heyu';
 			
-			echo $return;
+			$this->DeviceName = trim($DeviceName);
+			$this->Status = (exec($this->heyu . ' onstate ' . $this->DeviceName) == 0) ? 'Off' : 'On';
+		}
+		
+		// left as reference
+		
+		/*function heyu($action, $device, $name, $change)
+		{
+			$command = "/usr/bin/heyu $action $device $change";
+			exec($command);
+			if (($action == 'dim') || ($action == 'bright'))
+			{
+				$command = "/usr/bin/heyu dimlevel $device";
+				return exec($command);
+				echo $return;
+			}
+		}*/
+		
+		public function OffOn()
+		{
+			$Option = ($this->Status == 'Off') ? ' on ' : ' off ';
+
+			exec($this->heyu . $Option . $this->DeviceName);
+		}
+	}
+	
+	class Dimmer Extends Module
+	{
+		public function Set($DimLevel)
+		{
+			$State  = exec('/usr/bin/heyu dimlevel ' . $this->DeviceName);
+			$Option = ($DimLevel > $State) ? 'dim' : 'bright';
+			$DimChange = ($DimLevel > $State) ? ($DimLevel - $State) : ($State - $DimLevel);
+			$DimChangeInc = round($dimchange / 6);
+
+			$State = exec($this->heyu . ' dimlevel ' . $this->DeviceName);
 			
 			while (true)
 			{
-				if ($return > $change)
+				if ($State > $change)
 				{
-					$option = "dim";
-					$return--;
+					$Option = ' dim ';
+					$State--;
 				}
-				elseif($return < $change)
+				elseif($State < $change)
 				{
-					$option = "bright";
-					$return++;
+					$Option = ' bright ';
+					$State++;
 				}
 				else
 				{
 					break;
 				}
-				
-				heyu($option, $device, $name, "1");
-			}
+
+				exec ($this->heyu . $Option . $this->DeviceName . ' ' . $State);
+			}			
 		}
 	}
 
-	function heyu($action, $device, $name, $change)
-	{
-		$command = "/usr/bin/heyu $action $device $change";
-		exec($command);
-		if (($action == 'dim') || ($action == 'bright'))
-		{
-			$command = "/usr/bin/heyu dimlevel $device";
-			return exec($command);
-//			echo $return;
-		}
-
-	}
-
-//	heyu($action, $device, $change);
-//	$command = "/usr/bin/heyu $action $device $change";
-
-	print "<font color=\"#000000\">Turning $name ($device) $action. ($exist) ($change)</font>\n";
-//	exec($command);
-
+	$Dimmer = new Dimmer('DimmerNameGoesHere');
+	$Dimmer->Set(PercentageGoesHere);
 ?>
