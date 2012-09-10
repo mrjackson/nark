@@ -24,11 +24,27 @@
 
 		if ($exist > $change)
 		{
-			$i = $exist;
-			while ($i > $change) {
-				heyu("dim", $device, $name, "1");
-				$i--;
+			$dimchange = $exist - $change;
+			$dimchangeinc = round($dimchange / 6);
+			$return = heyu("dim", $device, $name, $dimchangeinc);
+			echo $return;
+			if ($return > $change)
+			{
+				$i = $return;
+				while ($i > $change) {
+					heyu("dim", $device, $name, "1");
+					$i--;
+				}
+			break;
+			} elseif ($return < $change)
+			{
+				$i = $return;
+				while ($i < $change) {
+					heyu("bright", $device, $name, "1");
+					$i++;
+				}
 			}
+
 		}
 	}
 
@@ -36,6 +52,13 @@
 	{
 		$command = "/usr/bin/heyu $action $device $change";
 		exec($command);
+		if (($action == 'dim') || ($action == 'bright'))
+		{
+			$command = "/usr/bin/heyu dimlevel $device";
+			return exec($command);
+//			echo $return;
+		}
+
 	}
 
 //	heyu($action, $device, $change);
