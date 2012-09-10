@@ -33,9 +33,11 @@
 
 	class Dimmer Extends Module
 	{
+		$this->Level = ($this->Status == On) ? exec('/usr/bin/heyu dimlevel ' . $this->DeviceName) : 0;
+
 		public function SetLevel($DimLevel)
 		{
-			$State  = exec('/usr/bin/heyu dimlevel ' . $this->DeviceName);
+			$State  = $this->Level;
 			$Option = ($DimLevel > $State) ? ' dim ' : ' bright ';
 			$DimChange = ($DimLevel > $State) ? ($DimLevel - $State) : ($State - $DimLevel);
 			$DimChangeInc = round($DimChange / 6);
