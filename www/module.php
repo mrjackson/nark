@@ -1,4 +1,6 @@
 <?php
+	require_once('../Includes/Modules.inc');
+
 	switch($_GET['Type'])
 	{
 		case 'Dimmer':

@@ -35,7 +35,7 @@
 	{
 		function __construct()
 		{
-			$this->Level = ($this->Status == 'On') ? exec('/usr/bin/heyu dimlevel ' . $this->DeviceName) : 0;
+			$this->Level = ($this->Status == 'On') ? exec($this->heyu . ' dimlevel ' . $this->DeviceName) : 0;
 		}
 
 		public function SetLevel($DimLevel)
