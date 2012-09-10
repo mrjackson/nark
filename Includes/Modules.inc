@@ -4,7 +4,6 @@
 		public function __construct($DeviceName)
 		{
 			$this->heyu = '/usr/bin/heyu';
-
 			$this->DeviceName = trim($DeviceName);
 			$this->Status = (exec($this->heyu . ' onstate ' . $this->DeviceName) == 0) ? 'Off' : 'On';
 		}
@@ -31,20 +30,18 @@
 		}
 	}
 
-	class Dimmer Extends Module
+	class Dimmer extends Module
 	{
-		function __construct()
+		public function __construct()
 		{
 			$this->Level = ($this->Status == 'On') ? exec($this->heyu . ' dimlevel ' . $this->DeviceName) : 0;
 		}
 
 		public function SetLevel($DimLevel)
 		{
-			$State  = $this->Level;
-			$Option = ($DimLevel > $State) ? ' dim ' : ' bright ';
-			$DimChange = ($DimLevel > $State) ? ($DimLevel - $State) : ($State - $DimLevel);
+			$Option = ($DimLevel > $this->Level) ? ' dim ' : ' bright ';
+			$DimChange = ($DimLevel > $this->Level) ? ($DimLevel - $this->Level) : ($this->Level - $DimLevel);
 			$DimChangeInc = round($DimChange / 6);
-
 			$State = exec($this->heyu . $Option . $this->DeviceName . ' ' . $DimChangeInc );
 
 			while (true)
