@@ -1,5 +1,5 @@
 <?php
-	class Module()
+	class Module
 	{
 		public function __construct($DeviceName)
 		{
