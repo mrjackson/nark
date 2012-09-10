@@ -58,7 +58,7 @@ $(function() {
 	min: 1,
 	max: 100,
 	step: 1,
-	stop: function(event, ui) {$('#slider1').load('module.php?d=E7&a=level&n=test_Appliance&e=100&c=' + ui.value);}
+	stop: function(event, ui) {$('#slider1').load('module.php?d=E7&c=' + ui.value);}
 	});
 });
 </script>
