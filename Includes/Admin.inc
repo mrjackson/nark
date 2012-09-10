@@ -47,7 +47,7 @@
 			switch($action)
 			{
 				case 'check':
-					if ($_SESSION['LoggedIn'] && (time() - $_SESSION['LastAction']) > 3600)
+					if ($_SESSION['LoggedIn'] && (time() - $_SESSION['LastAction']) > 36000)
 					{
 						self::Logout();
 					}
