@@ -38,9 +38,9 @@
 			$State  = exec('/usr/bin/heyu dimlevel ' . $this->DeviceName);
 			$Option = ($DimLevel > $State) ? 'dim' : 'bright';
 			$DimChange = ($DimLevel > $State) ? ($DimLevel - $State) : ($State - $DimLevel);
-			$DimChangeInc = round($dimchange / 6);
+			$DimChangeInc = round($DimChange / 6);
 
-			$State = exec($this->heyu . ' dimlevel ' . $this->DeviceName);
+			$State = exec($this->heyu . $Option . $this->DeviceName . ' ' . $DimChangeInc );
 			
 			while (true)
 			{
