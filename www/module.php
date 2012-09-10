@@ -3,7 +3,7 @@
 	{
 		public function __construct($DeviceName)
 		{
-			private $this->heyu = '/usr/bin/heyu';
+			protected $this->heyu = '/usr/bin/heyu';
 			
 			$this->DeviceName = trim($DeviceName);
 			$this->Status = (exec($this->heyu . ' onstate ' . $this->DeviceName) == 0) ? 'Off' : 'On';
@@ -46,12 +46,10 @@
 			{
 				if ($State > $DimChange)
 				{
-					$Option = ' dim ';
 					$State--;
 				}
 				elseif($State < $DimChange)
 				{
-					$Option = ' bright ';
 					$State++;
 				}
 				else
