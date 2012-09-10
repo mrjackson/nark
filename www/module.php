@@ -3,7 +3,7 @@
 	{
 		public function __construct($DeviceName)
 		{
-			protected $this->heyu = '/usr/bin/heyu';
+			$this->heyu = '/usr/bin/heyu';
 			
 			$this->DeviceName = trim($DeviceName);
 			$this->Status = (exec($this->heyu . ' onstate ' . $this->DeviceName) == 0) ? 'Off' : 'On';
@@ -36,7 +36,7 @@
 		public function SetLevel($DimLevel)
 		{
 			$State  = exec('/usr/bin/heyu dimlevel ' . $this->DeviceName);
-			$Option = ($DimLevel > $State) ? 'dim' : 'bright';
+			$Option = ($DimLevel > $State) ? ' dim ' : ' bright ';
 			$DimChange = ($DimLevel > $State) ? ($DimLevel - $State) : ($State - $DimLevel);
 			$DimChangeInc = round($DimChange / 6);
 
