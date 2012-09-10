@@ -62,6 +62,6 @@
 		}
 	}
 
-	$Dimmer = new Dimmer('DimmerNameGoesHere');
-	$Dimmer->SetLevel();
+	$Dimmer = new Dimmer($_GET['n']);
+	return $Dimmer->SetLevel($_GET['c']);
 ?>
