@@ -46,13 +46,13 @@
 
 			while (true)
 			{
-				if ($State > $DimChange)
-				{
-					$State--;
-				}
-				elseif($State < $DimChange)
+				if ($Option == ' bright ' && $State < $DimLevel)
 				{
 					$State++;
+				}
+				elseif($Option == ' dim ' && $State > $DimLevel)
+				{
+					$State--;
 				}
 				else
 				{
