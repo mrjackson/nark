@@ -28,8 +28,6 @@
 			$dimchangeinc = round($dimchange / 6);
 			$return = heyu("dim", $device, $name, $dimchangeinc);
 			
-			echo $return;
-			
 			while (true)
 			{
 				if ($return > $change)
@@ -47,6 +45,32 @@
 					break;
 				}
 				
+				heyu($option, $device, $name, "1");
+			}
+		}
+		elseif ($change > $exist)
+		{
+			$dimchange = $change - $exist;
+			$dimchangeinc = round($dimchange / 6);
+			$return = heyu("bright", $device, $name, $dimchangeinc);
+
+			while (true)
+			{
+				if ($return < $change)
+				{
+					$option = "dim";
+					$return--;
+				}
+				elseif($return > $change)
+				{
+					$option = "bright";
+					$return++;
+				}
+				else
+				{
+					break;
+				}
+
 				heyu($option, $device, $name, "1");
 			}
 		}
