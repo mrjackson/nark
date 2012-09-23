@@ -32,9 +32,9 @@
 
 	class Dimmer extends Module
 	{
-		public function __construct()
+		public function __construct($DeviceName)
 		{
-			parent::__construct();
+			parent::__construct($DeviceName);
 			$this->Level = ($this->Status == 'On') ? exec($this->heyu . ' dimlevel ' . $this->DeviceName) : 0;
 		}
 
