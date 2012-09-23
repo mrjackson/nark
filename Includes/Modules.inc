@@ -34,6 +34,7 @@
 	{
 		public function __construct()
 		{
+			parent::__construct();
 			$this->Level = ($this->Status == 'On') ? exec($this->heyu . ' dimlevel ' . $this->DeviceName) : 0;
 		}
 
