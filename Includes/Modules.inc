@@ -35,17 +35,19 @@
 			$Option = ($DimLevel > $this->Level) ? ' bright ' : ' dim ';
 			$DimChange = ($DimLevel > $this->Level) ? ($DimLevel - $this->Level) : ($this->Level - $DimLevel);
 			$DimChangeInc = round($DimChange / 6);
-
-			$State = exec($this->heyu . $Option . $this->DeviceName . $DimChangeInc);
+			exec($this->heyu . $Option . $this->DeviceName . $DimChangeInc);
+			$State = $this->GetLevel();
 
 			while (true)
 			{
 				if ($Option == ' bright ' && $State < $DimLevel)
 				{
+					$State++;
 					print "Bright\n";
 				}
 				elseif($Option == ' dim ' && $State > $DimLevel)
 				{
+					$State--;
 					print "Dim\n";
 				}
 				else
