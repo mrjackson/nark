@@ -40,20 +40,22 @@
 
 		public function SetLevel($DimLevel)
 		{
-			$Option = ($DimLevel > $this->Level) ? ' dim ' : ' bright ';
+			$Option = ($DimLevel > $this->Level) ? ' bright ' : ' dim ';
 			$DimChange = ($DimLevel > $this->Level) ? ($DimLevel - $this->Level) : ($this->Level - $DimLevel);
 			$DimChangeInc = round($DimChange / 6);
-			$State = exec($this->heyu . $Option . $this->DeviceName . ' ' . $DimChangeInc );
-
+			$State = exec($this->heyu . $Option . $this->DeviceName . $DimChangeInc);
+			
 			while (true)
 			{
 				if ($Option == ' bright ' && $State < $DimLevel)
 				{
 					$State++;
+					{ print "Bright\n"; }
 				}
 				elseif($Option == ' dim ' && $State > $DimLevel)
 				{
 					$State--;
+					{ print "Dim\n"; }
 				}
 				else
 				{
