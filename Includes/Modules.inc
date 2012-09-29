@@ -32,12 +32,17 @@
 
 		public function SetLevel($DimLevel)
 		{
+			if ($this->Status == 'Off')
+			{
+				$this->OffOn();
+			}
+
 			$Option = ($DimLevel > $this->Level) ? ' bright ' : ' dim ';
 			$DimChange = ($DimLevel > $this->Level) ? ($DimLevel - $this->Level) : ($this->Level - $DimLevel);
 			$DimChangeInc = round($DimChange / 6);
 			exec ($this->heyu . $Option . $this->DeviceName . ' ' . $DimChangeInc);
 			$State = $this->GetLevel();
-			{ print "State "; } { print $State; } { print "<br>"; }
+			print "State " . $State . "<br />"; }
 
 			while (true)
 			{
