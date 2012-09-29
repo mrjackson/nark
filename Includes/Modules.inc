@@ -42,7 +42,7 @@
 			$DimChangeInc = round($DimChange / 6);
 			exec ($this->heyu . $Option . $this->DeviceName . ' ' . $DimChangeInc);
 			$State = $this->GetLevel();
-			print "State " . $State . "<br />"; }
+			print "State " . $State . "<br />";
 
 			while (true)
 			{
