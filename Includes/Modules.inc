@@ -35,8 +35,9 @@
 			$Option = ($DimLevel > $this->Level) ? ' bright ' : ' dim ';
 			$DimChange = ($DimLevel > $this->Level) ? ($DimLevel - $this->Level) : ($this->Level - $DimLevel);
 			$DimChangeInc = round($DimChange / 6);
-			exec($this->heyu . $Option . $this->DeviceName . $DimChangeInc);
+			exec ($this->heyu . $Option . $this->DeviceName . ' ' . $DimChangeInc);
 			$State = $this->GetLevel();
+			{ print "State "; } { print $State; } { print "<br>"; }
 
 			while (true)
 			{
@@ -55,7 +56,7 @@
 					break;
 				}
 
-				exec ($this->heyu . $Option . $this->DeviceName . ' ' . $State);
+				exec ($this->heyu . $Option . $this->DeviceName . ' ' . 1);
 			}
 		}
 	}
