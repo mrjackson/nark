@@ -38,13 +38,21 @@
 			$this->Level = ($this->Status == 'On') ? exec($this->heyu . ' dimlevel ' . $this->DeviceName) : 0;
 		}
 
+		private function GetLevel()
+		{
+			$this->Level = ($this->Status == 'On') ? exec($this->heyu . ' dimlevel ' . $this->DeviceName) : 0;
+			return $this->Level;
+		}
+
 		public function SetLevel($DimLevel)
 		{
 			$Option = ($DimLevel > $this->Level) ? ' bright ' : ' dim ';
 			$DimChange = ($DimLevel > $this->Level) ? ($DimLevel - $this->Level) : ($this->Level - $DimLevel);
 			$DimChangeInc = round($DimChange / 6);
-			$State = exec($this->heyu . $Option . $this->DeviceName . $DimChangeInc);
-			
+			exec($this->heyu . $Option . $this->DeviceName . $DimChangeInc);
+
+			$State = $this->GetLevel();
+
 			while (true)
 			{
 				if ($Option == ' bright ' && $State < $DimLevel)
