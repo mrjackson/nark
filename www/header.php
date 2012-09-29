@@ -1,5 +1,6 @@
 <?php
 	require_once('../Includes/Header.inc');
+
 	if ($_SESSION['LoggedIn'])
 	{
 		Admin::Status('update');
@@ -66,7 +67,7 @@ font-weight:700;
 
 .clear{clear:both;}
 
-#slider { margin: 10px; } 
+#slider { margin: 10px; }
 
 </style>
 
@@ -87,4 +88,4 @@ font-weight:700;
 <li><a href="news.asp">News</a></li>
 <li><a href="contact.asp">Contact</a></li>
 <li><a href="about.asp">About</a></li>
-</ul> 
+</ul>

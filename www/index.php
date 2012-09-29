@@ -22,10 +22,10 @@ print "<pre>Module E7 dim level is $outputdim</pre>";
   <script type="text/javascript">
 
     $('#1').iphoneSwitch("on", function() {
-       $('#ajax').load('module.php?d=E7&a=on&n=test_Appliance&c=15');
+       $('#ajax').load('module.php?Module=E7&Type=Switch&Action=Switch');
       },
       function() {
-       $('#ajax').load('module.php?d=E7&a=off&n=test_Appliance&c=15');
+       $('#ajax').load('module.php?Module=E7&Type=Switch&Action=Switch');
       },
       {
         switch_on_container_path: 'img/iphone_switch_container_off.png'
@@ -38,10 +38,10 @@ print "<pre>Module E7 dim level is $outputdim</pre>";
   <script type="text/javascript">
 
     $('#2').iphoneSwitch("on", function() {
-       $('#ajax2').load('module.php?d=E5&a=on&n=test_Appliance&c=15');
+       $('#ajax2').load('module.php?Module=E5&Type=Switch');
       },
       function() {
-       $('#ajax2').load('module.php?d=E5&a=off&n=test_Appliance&c=15');
+       $('#ajax2').load('module.php?Module=E5&Type=Switch');
       },
       {
         switch_on_container_path: 'img/iphone_switch_container_off.png'
@@ -58,7 +58,7 @@ $(function() {
 	min: 1,
 	max: 100,
 	step: 1,
-	stop: function(event, ui) {$('#slider1').load('module.php?d=E7&a=level&n=test_Appliance&e=100&c=' + ui.value);}
+	stop: function(event, ui) {$('#slider1').load('module.php?Module=E7&Type=Dimmer&Action=SetLevel&Change=' + ui.value);}
 	});
 });
 </script>

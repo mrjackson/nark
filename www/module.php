@@ -1,51 +1,18 @@
 <?php
-	$action = $_GET['a'];
-	$device = $_GET['d'];
-	$name = $_GET['n'];
+	require_once('../Includes/Modules.inc');
 
-	$change = "";
-	$exist = "";
-
-//	if (($action == 'bright') || ($action == 'dim'))
-//	{
-//		$change = $_GET['c'];
-//	}
-
-	if (($action == 'on') || ($action == 'off'))
+	switch($_GET['Type'])
 	{
-		heyu($action, $device, $name);
-	}
+		case 'Dimmer':
+			$Dimmer = new Dimmer($_GET['Module']);
 
-	if ($action == 'level')
-	{
-		$exist = $_GET['e'];
-		$change = $_GET['c'];
-		$action = 'dim';
-
-		if ($exist > $change)
-		{
-			$dimchange = $exist - $change;
-			$dimchangeinc = round($dimchange / 6);
-			$return = heyu("dim", $device, $name, $dimchangeinc);
-			
-			while (true)
+			switch($_GET['Action'])
 			{
-				if ($return > $change)
-				{
-					$option = "dim";
-					$return--;
-				}
-				elseif($return < $change)
-				{
-					$option = "bright";
-					$return++;
-				}
-				else
-				{
+				case 'GetStatus':
+					return $Dimmer->Status;
+				case 'SetLevel':
+					$Dimmer->SetLevel($_GET['Change']);
 					break;
-				}
-				
-				heyu($option, $device, $name, "1");
 			}
 		}
 		elseif ($change > $exist)
@@ -86,13 +53,21 @@
 			return exec($command);
 //			echo $return;
 		}
+=======
+			break;
+		case 'Switch':
+			$Switch = new Module($_GET['Module']);
+>>>>>>> test
 
+			switch($_GET['Action'])
+			{
+				case 'GetStatus':
+					return $Dimmer->Status;
+					break;
+				case 'Switch':
+					$Switch->OffOn();
+					break;
+			}
+			break;
 	}
-
-//	heyu($action, $device, $change);
-//	$command = "/usr/bin/heyu $action $device $change";
-
-	print "<font color=\"#000000\">Turning $name ($device) $action. ($exist) ($change)</font>\n";
-//	exec($command);
-
 ?>
