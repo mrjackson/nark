@@ -8,20 +8,6 @@
 			$this->Status = (exec($this->heyu . ' onstate ' . $this->DeviceName) == 0) ? 'Off' : 'On';
 		}
 
-		// left as reference
-
-		/*function heyu($action, $device, $name, $change)
-		{
-			$command = "/usr/bin/heyu $action $device $change";
-			exec($command);
-			if (($action == 'dim') || ($action == 'bright'))
-			{
-				$command = "/usr/bin/heyu dimlevel $device";
-				return exec($command);
-				echo $return;
-			}
-		}*/
-
 		public function OffOn()
 		{
 			$Option = ($this->Status == 'Off') ? ' on ' : ' off ';
@@ -49,21 +35,18 @@
 			$Option = ($DimLevel > $this->Level) ? ' bright ' : ' dim ';
 			$DimChange = ($DimLevel > $this->Level) ? ($DimLevel - $this->Level) : ($this->Level - $DimLevel);
 			$DimChangeInc = round($DimChange / 6);
-			exec($this->heyu . $Option . $this->DeviceName . $DimChangeInc);
 
-			$State = $this->GetLevel();
+			$State = exec($this->heyu . $Option . $this->DeviceName . $DimChangeInc);
 
 			while (true)
 			{
 				if ($Option == ' bright ' && $State < $DimLevel)
 				{
-					$State++;
-					{ print "Bright\n"; }
+					print "Bright\n";
 				}
 				elseif($Option == ' dim ' && $State > $DimLevel)
 				{
-					$State--;
-					{ print "Dim\n"; }
+					print "Dim\n";
 				}
 				else
 				{
